@@ -1,0 +1,265 @@
+/* ----------------------------------------------- */
+/* BASIC SETUP */
+/* ----------------------------------------------- */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+li {
+	list-style: none;
+}
+
+a:link,
+a:visited {
+	text-decoration: none;
+}
+
+/* ------------------------------------------------------------ */
+/* LAYOUTS */
+/* ------------------------------------------------------------ */
+.wrapper {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	width: 100%;
+	max-width: 990px;
+	padding: 0 3rem;
+	margin: 0 auto;
+}
+
+/* ------------------------------------------------------------ */
+/* COMPONENTS */
+/* ------------------------------------------------------------ */
+/* ------------------------- HERO ------------------------- */
+.hero img {
+	width: 100%;
+	height: auto;
+}
+
+/* ------------------------- CHOICE ------------------------- */
+
+.choice-form__box {
+	margin: 4rem 0;
+}
+
+.choice-form__heading {
+	font-size: 2rem;
+	margin-bottom: 1.6rem;
+}
+
+.choice-form__list {
+	font-size: 1.6rem;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+/* ------------------------- TABLE ------------------------- */
+.table {
+	width: 100%;
+	font-size: 1.4rem;
+}
+
+.table th,
+.table td {
+	border: 1px solid #000;
+}
+
+.table thead span {
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.table tbody span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 4rem;
+}
+
+.table tbody a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 4rem;
+}
+
+
+/* ------------------------- SUBSCRIBER ------------------------- */
+
+.subscriber__heading {
+	margin-bottom: 1.6rem;
+}
+
+/* ------------------------- REGISTERED ------------------------- */
+.registered {
+	flex: 0 0 50%;
+}
+
+.registered__group {
+	margin-bottom: .8rem;
+}
+
+.registered__group input {
+	border: 1px solid #000;
+	padding: 8px;
+}
+
+.new {
+	flex: 0 0 50%;
+}
+
+.user {
+	display: flex;
+	gap: 2.4rem;
+}
+
+.no-register-button {
+	margin-top: 1.6rem;
+}
+
+/* ------------------------- REGISTER-FORM ------------------------- */
+.register-form__heading {
+	font-size: 2rem;
+}
+
+.register-form__form {
+	margin-top: 2.4rem;
+}
+
+/* ------------------------- FORM ------------------------- */
+.form__heading {
+	font-size: 1.8rem;
+}
+
+.form:not(:first-of-type) {
+	margin-top: 3.2rem;
+}
+
+.form__box {
+	margin-top: 1.6rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.form__label {
+	margin-bottom: 4px;
+}
+
+.form__basic {
+	border: 1px solid #000;
+	padding: 8px;
+}
+
+.form__textarea {
+	border: 1px solid #000;
+	width: 100%;
+	padding: 8px;
+}
+
+/* ------------------------- CONFIRM ------------------------- */
+.confirm textarea {
+	border: 1px solid #000;
+}
+
+.confirm__head {
+	padding-bottom: 1.6rem;
+}
+
+.confirm__definition-box {
+	margin: 1.6rem 0;
+}
+
+/* ------------------------- BUTTONS ------------------------- */
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20rem;
+	height: 5rem;
+	background-color: #cdcdcd;
+}
+
+.select-buttons {
+	display: flex;
+	gap: 1.6rem;
+}
+
+.main-buttons {
+	display: flex;
+	gap: 1.6rem;
+}
+
+.main-buttons .button {
+	width: 12rem;
+	font-size: 1.4rem;
+}
+
+/* ------------------------- HELPER ------------------------- */
+.margin-top-helper {
+	margin-top: 2.4rem;
+}
+
+
+/* ------------------------------------------------------------ */
+/* HEADER */
+/* ------------------------------------------------------------ */
+
+.header {
+	display: flex;
+	align-items: center;
+	height: 6.4rem;
+}
+
+.header__container {
+	display: flex;
+	align-items: center;
+}
+
+.header__heading {
+	margin-right: auto;
+}
+
+.nav {
+	font-size: 1.6rem;
+}
+
+.header__container .nav {
+	margin-right: 2rem;
+}
+
+.nav__list {
+	display: flex;
+	gap: 1.6rem;
+}
+
+/* ------------------------------------------------------------ */
+/* MAIN */
+/* ------------------------------------------------------------ */
+.main {
+	font-size: 1.6rem;
+}
+
+/* ------------------------------------------------------------ */
+/* FOOTER */
+/* ------------------------------------------------------------ */
+.footer {
+	background-color: #000;
+	color: #fff;
+	padding: 4rem 0;
+	font-size: 1.6rem;
+	margin-top: auto;
+}
