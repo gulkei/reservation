@@ -1,0 +1,15 @@
+.section-tertiary:not(:first-of-type) {
+  padding: 4rem 0;
+}
+
+.section-tertiary:first-of-type {
+  padding-top: 4rem;
+}
+
+.section-quaternary:not(:first-of-type) {
+  padding: 2.4rem 0;
+}
+
+.section-quaternary:first-of-type {
+  padding-top: 2.4rem;
+}

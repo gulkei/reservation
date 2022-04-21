@@ -1,0 +1,31 @@
+.table {
+	width: 100%;
+	font-size: 1.4rem;
+
+  th,
+  td {
+    border: 1px solid #000;
+  }
+
+  thead span {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  tbody span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+  }
+
+  tbody a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+  }
+
+}
