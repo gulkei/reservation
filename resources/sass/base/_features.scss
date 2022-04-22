@@ -1,0 +1,7 @@
+.flex {
+	display: flex;
+
+  &__half {
+    flex: 0 0 50%;
+  }
+}

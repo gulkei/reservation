@@ -1,0 +1,40 @@
+.form {
+  &__area:not(:first-of-type) {
+    margin-top: 3.2rem;
+  }
+
+  &__row {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  &__group {
+    margin-bottom: .8rem;
+
+    input {
+      border: 1px solid #000;
+      padding: 8px;
+    }
+  }
+
+  &__label {
+    margin-bottom: 4px;
+  }
+
+  &__basic {
+    border: 1px solid #000;
+    padding: 8px;
+  }
+
+  &__textarea {
+    border: 1px solid #000;
+    width: 100%;
+    padding: 8px;
+  }
+
+  &__attention a {
+    text-decoration: underline;
+  }
+}

@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="vendors/css/reset.css">
   <link rel="stylesheet" href="resources/css/style.css">
-  <link rel="stylesheet" href="resources/css/queries.css">
   <title>Document</title>
 </head>
 <body>
@@ -33,31 +31,31 @@
     </header>
 
     <main class="main">
-      <div class="subscriber">
+      <div class="login-register">
         <div class="container">
-          <h3 class="subscriber__heading">予約者情報</h3>
-          <div class="user">
-            <div class="registered">
-              <form action="" method="post" class="registered__form">
-                <div class="registered__group">
+          <h3 class="heading-tertiary">予約者情報</h3>
+          <div class="flex">
+            <div class="flex__half">
+              <form action="" method="post" class="form">
+                <div class="form__group">
                   <label for="">ログインID</label>
                   <input type="text">
                 </div>
-                <div class="registered__group">
+                <div class="form__group">
                   <label for="">パスワード</label>
                   <input type="text">
                 </div>
-                <div class="login">
+                <div class="button-wrap">
                   <a href="#" class="button">ログイン</a>
                 </div>
               </form>
             </div>
 
-            <div class="new">
-              <div class="register-button">
+            <div class="flex__half">
+              <div class="button-wrap">
                 <a href="#" class="button">新規登録して次へ</a>
               </div>
-              <div class="no-register-button">
+              <div class="button-wrap margin-top-helper">
                 <a href="#" class="button">新規登録せずに次へ</a>
               </div>
             </div>

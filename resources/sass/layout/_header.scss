@@ -1,0 +1,27 @@
+.header {
+	display: flex;
+	align-items: center;
+	height: 6.4rem;
+}
+
+.header__container {
+	display: flex;
+	align-items: center;
+}
+
+.header__heading {
+	margin-right: auto;
+}
+
+.nav {
+	font-size: 1.6rem;
+}
+
+.header__container .nav {
+	margin-right: 2rem;
+}
+
+.nav__list {
+	display: flex;
+	gap: 1.6rem;
+}
