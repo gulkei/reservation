@@ -7,13 +7,6 @@
     border: 1px solid #000;
   }
 
-  thead span {
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   tbody span {
     display: flex;
     align-items: center;
@@ -28,4 +21,22 @@
     height: 4rem;
   }
 
+  &__box {
+    gap: .8rem;
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  &__week {
+    &--blue {
+      color: $color-week-saturday;
+    }
+
+    &--red {
+      color: $color-week-holiday;
+    }
+  }
 }
