@@ -4,33 +4,28 @@
     <thead>
       <tr>
         <th></th>
+        @foreach ($weeks as $week)
         <th>
-          <span>4/16(土)</span>
+          <div class="table__box">
+            <span>{{$week}}</span>
+            @if (Str::contains($dayOfWeek[$loop->index], '土'))
+            <span class="table__week--blue">{{$dayOfWeek[$loop->index]}}</span>
+            @elseif (Str::contains($dayOfWeek[$loop->index], '日'))
+            <span class="table__week--red">{{$dayOfWeek[$loop->index]}}</span>
+            @else
+            <span>{{$dayOfWeek[$loop->index]}}</span>
+            @endif
+          </div>
         </th>
-        <th>
-          <span>4/17(日)</span>
-        </th>
-        <th>
-          <span>4/18(月)</span>
-        </th>
-        <th>
-          <span>4/19(火)</span>
-        </th>
-        <th>
-          <span>4/20(水)</span>
-        </th>
-        <th>
-          <span>4/21(木)</span>
-        </th>
-        <th>
-          <span>4/22(金)</span>
-        </th>
+        @endforeach
       </tr>
     </thead>
+
     <tbody>
+      @foreach ($times as $time)
       <tr>
         <th>
-          <span>10:00〜</span>
+          <span>{{$time}}〜</span>
         </th>
         <td>
           <a href="login-register.html">◯</a>
@@ -54,222 +49,7 @@
           <a href="#">◯</a>
         </td>
       </tr>
-
-      <tr>
-        <th>
-          <span>11:00〜</span>
-        </th>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>
-          <span>12:00〜</span>
-        </th>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>
-          <span>13:00〜</span>
-        </th>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>
-          <span>14:00〜</span>
-        </th>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>
-          <span>15:00〜</span>
-        </th>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>
-          <span>16:00〜</span>
-        </th>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>
-          <span>17:00〜</span>
-        </th>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>
-          <span>18:00〜</span>
-        </th>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-      </tr>
+      @endforeach
     </tbody>
   </table>
 </section>

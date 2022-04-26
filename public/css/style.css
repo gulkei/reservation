@@ -530,12 +530,6 @@ th {
 .table td {
   border: 1px solid #000;
 }
-.table thead span {
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .table tbody span {
   display: flex;
   align-items: center;
@@ -547,6 +541,19 @@ th {
   align-items: center;
   justify-content: center;
   height: 4rem;
+}
+.table__box {
+  gap: 0.8rem;
+  display: flex;
+  height: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+.table__week--blue {
+  color: blue;
+}
+.table__week--red {
+  color: red;
 }
 
 .container {
