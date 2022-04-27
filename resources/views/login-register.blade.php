@@ -26,7 +26,7 @@
 
           <div class="flex__half">
             <div class="button-wrap">
-              <a href="#" class="button">新規登録して次へ</a>
+              <a href="{{ route('register') }}" class="button">新規登録して次へ</a>
             </div>
             <div class="button-wrap margin-top-helper">
               <a href="#" class="button">新規登録せずに次へ</a>
