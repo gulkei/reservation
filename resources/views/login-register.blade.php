@@ -9,17 +9,18 @@
         <h3 class="heading-tertiary">予約者情報</h3>
         <div class="flex">
           <div class="flex__half">
-            <form action="" method="post" class="form">
+            <form action="{{route('login')}}" method="post" class="form">
+              @csrf
               <div class="form__group">
-                <label for="">ログインID</label>
-                <input type="text">
+                <label for="">メールアドレス</label>
+                <input type="email" name="email" required>
               </div>
               <div class="form__group">
                 <label for="">パスワード</label>
-                <input type="text">
+                <input type="password" name="password" required>
               </div>
               <div class="button-wrap">
-                <a href="#" class="button">ログイン</a>
+                <input type="submit" class="button" value="ログイン">
               </div>
             </form>
           </div>
