@@ -20,3 +20,4 @@ use App\Http\Controllers\RegisterController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login-register', [LoginRegisterController::class, 'index'])->name('login-register');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'create'])->name('register.create');

@@ -550,10 +550,10 @@ th {
   justify-content: center;
 }
 .table__week--blue {
-  color: blue;
+  color: #0000ff;
 }
 .table__week--red {
-  color: red;
+  color: #ff0000;
 }
 
 .container {
