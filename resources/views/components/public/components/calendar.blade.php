@@ -28,7 +28,7 @@
           <span>{{$time}}〜</span>
         </th>
         <td>
-          <a href="{{ route('login-register') }}">◯</a>
+          <a href="{{ route('reservation') }}">◯</a>
         </td>
         <td>
           <a href="#">◯</a>
