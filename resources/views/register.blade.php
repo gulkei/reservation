@@ -7,8 +7,18 @@
     <div class="register">
       <div class="container">
         <h3 class="heading-tertiary">会員登録</h3>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        @endif
 
-        <form action="" class="form" method="post">
+        <form action="{{route('register.create')}}" class="form" method="post">
+          @csrf
           <div class="form__area">
             <h4 class="heading-quaternary">会員情報</h4>
             <div class="form__row">
@@ -16,7 +26,7 @@
                 <span class="form__select">必須</span>
                 <span class="form__title">お名前</span>
               </label>
-              <input type="text" class="form__basic">
+              <input type="text" class="form__basic" name="name" required>
             </div>
 
             <div class="form__row">
@@ -24,18 +34,7 @@
                 <span class="form__select">必須</span>
                 <span class="form__title">メールアドレス</span>
               </label>
-              <input type="email" class="form__basic">
-            </div>
-          </div>
-
-          <div class="form__area">
-            <h4 class="heading-quaternary">ログイン情報</h4>
-            <div class="form__row">
-              <label for="" class="form__label">
-                <span class="form__select">必須</span>
-                <span class="form__title">ログインID</span>
-              </label>
-              <input type="text" class="form__basic">
+              <input type="email" class="form__basic" name="email" required>
             </div>
 
             <div class="form__row">
@@ -43,7 +42,7 @@
                 <span class="form__select">必須</span>
                 <span class="form__title">パスワード</span>
               </label>
-              <input type="password" class="form__basic">
+              <input type="password" class="form__basic" name="password" required>
             </div>
 
             <div class="form__row">
@@ -51,14 +50,14 @@
                 <span class="form__select">必須</span>
                 <span class="form__title">パスワード再確認</span>
               </label>
-              <input type="password" class="form__basic">
+              <input type="password" class="form__basic" name="password_confirmation" required>
             </div>
           </div>
 
           <div class="form__area">
             <h4 class="heading-quaternary">何かご要望がございましたらご記入ください</h4>
 
-            <textarea name="" class="form__textarea"></textarea>
+            <textarea name="request" class="form__textarea"></textarea>
           </div>
 
           <div class="flex margin-top-helper">

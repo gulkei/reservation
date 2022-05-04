@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as var;
+
 .table {
 	width: 100%;
 	font-size: 1.4rem;
@@ -32,11 +34,11 @@
 
   &__week {
     &--blue {
-      color: $color-week-saturday;
+      color: var.$color-week-saturday;
     }
 
     &--red {
-      color: $color-week-holiday;
+      color:var.$color-week-holiday;
     }
   }
 }
