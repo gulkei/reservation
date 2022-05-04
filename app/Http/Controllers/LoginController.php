@@ -27,7 +27,7 @@ class LoginController extends Controller
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
 
-      return redirect()->intended('confirm');
+      return redirect()->intended('reservation/confirm');
     }
 
     return back()->withErrors([

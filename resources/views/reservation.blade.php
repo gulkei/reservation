@@ -9,7 +9,7 @@
         <h3 class="heading-tertiary">予約者情報</h3>
         <div class="flex">
           <div class="flex__half">
-            <form action="{{route('login')}}" method="post" class="form">
+            <form action="{{route('reservation.login')}}" method="post" class="form">
               @csrf
               <div class="form__group">
                 <label for="">メールアドレス</label>
