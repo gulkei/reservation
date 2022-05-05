@@ -509,6 +509,9 @@ th {
 .form__attention a {
   text-decoration: underline;
 }
+.form__error {
+  color: #ff0000;
+}
 
 .hero img {
   width: 100%;

@@ -9,20 +9,7 @@
         <h3 class="heading-tertiary">予約者情報</h3>
         <div class="flex">
           <div class="flex__half">
-            <form action="{{route('reservation.login')}}" method="post" class="form">
-              @csrf
-              <div class="form__group">
-                <label for="">メールアドレス</label>
-                <input type="email" name="email" required>
-              </div>
-              <div class="form__group">
-                <label for="">パスワード</label>
-                <input type="password" name="password" required>
-              </div>
-              <div class="button-wrap">
-                <input type="submit" class="button" value="ログイン">
-              </div>
-            </form>
+            <x-public.components.form.login :route="$route" />
           </div>
 
           <div class="flex__half">
