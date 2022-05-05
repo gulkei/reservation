@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as var;
+
 .form {
   &__area:not(:first-of-type) {
     margin-top: 3.2rem;
@@ -36,5 +38,9 @@
 
   &__attention a {
     text-decoration: underline;
+  }
+
+  &__error {
+    color: var.$color-red;
   }
 }

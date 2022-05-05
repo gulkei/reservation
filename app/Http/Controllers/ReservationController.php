@@ -6,7 +6,10 @@ class ReservationController extends Controller
 {
   public function index()
   {
-    return view('reservation');
+    $route = route('reservation.login');
+    return view('reservation', [
+      'route' => $route,
+    ]);
   }
 
   public function confirm()
