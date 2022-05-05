@@ -1,8 +1,8 @@
 <header class="header">
   <div class="container header__container">
     <h1 class="header__heading">
-          <a href="index.html"><img src="{{asset('img/logo.jpg')}}" alt="ロゴ"></a>
-        </h1>
+      <a href="{{route('home')}}"><img src="{{asset('img/logo.jpg')}}" alt="ロゴ"></a>
+    </h1>
     <nav class="nav">
       <ul class="nav__list">
         <li class="nav__item">
@@ -19,10 +19,10 @@
 
     <div class="main-buttons">
       <div class="button-wrap--small">
-        <a href="" class="button">ログイン</a>
+        <a href="{{route('mypage.login')}}" class="button">ログイン</a>
       </div>
       <div class="button-wrap--small">
-        <a href="" class="button">会員登録</a>
+        <a href="{{route('register')}}" class="button">会員登録</a>
       </div>
     </div>
   </div>
