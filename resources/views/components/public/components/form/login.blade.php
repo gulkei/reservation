@@ -11,7 +11,7 @@
     <label for="">パスワード</label>
     <input type="password" name="password" required>
   </div>
-  <p class="form__attention">※パスワードを忘れた方は<a href="#">こちら</a></p>
+  <p class="form__attention">※パスワードを忘れた方は<a href="{{route('password.request')}}">こちら</a></p>
   <div class="button-wrap margin-top-helper">
     <input type="submit" class="button" value="ログイン">
   </div>
