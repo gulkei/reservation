@@ -47,6 +47,9 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web/forgot-password.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/web/reset-password.php'));
         });
     }
 
