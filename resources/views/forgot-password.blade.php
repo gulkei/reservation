@@ -5,7 +5,7 @@
 
   <main class="main">
 
-    <div class="send-password">
+    <div class="forgot-password">
       <div class="container">
         <h3 class="heading-tertiary">パスワード再設定</h3>
         @if (session('status'))
@@ -20,9 +20,17 @@
             <label for="">メールアドレス</label>
             <input type="email" name="email" required>
           </div>
-          <div class="button-wrap margin-top-helper">
-            <input type="submit" class="button" value="送信する">
+
+          <div class="flex margin-top-helper">
+            <div class="button-wrap">
+              <a href="{{url()->previous()}}" class="button">前の画面に戻る</a>
+            </div>
+
+            <div class="button-wrap">
+              <input type="submit" class="button" value="送信する">
+            </div>
           </div>
+
         </form>
       </div>
     </div>
