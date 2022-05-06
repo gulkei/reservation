@@ -9,7 +9,7 @@
         <h3 class="heading-tertiary">予約者情報</h3>
         <div class="flex">
           <div class="flex__half">
-            <x-public.components.form.login :route="$route" />
+            <x-public.components.form.login :route="$route" :errors="$errors" />
           </div>
 
           <div class="flex__half">
