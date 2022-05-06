@@ -27,6 +27,13 @@ class LoginController extends Controller
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
 
+      // マイページログインからの場合はマイページへ遷移させる
+      $requestUrl = $request->url();
+      $route = route('mypage.login');
+      if ($requestUrl === $route) {
+        return redirect()->intended('mypage');
+      }
+
       return redirect()->intended('reservation/confirm');
     }
 
