@@ -6,6 +6,9 @@
   <main class="main">
     <div class="login">
       <div class="container">
+        @if (session('status'))
+        <p>{{session('status')}}</p>
+        @endif
         <h3 class="heading-tertiary">ログイン</h3>
         <x-public.components.form.login :route="$route" :errors="$errors" />
       </div>
