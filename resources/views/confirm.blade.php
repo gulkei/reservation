@@ -54,7 +54,7 @@
 
             <div class="flex margin-top-helper">
               <div class="button-wrap">
-                <input type="button" class="button" value="前の画面に戻る">
+                <a href="{{url()->previous()}}" class="button">前の画面に戻る</a>
               </div>
 
               <div class="button-wrap">
