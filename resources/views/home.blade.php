@@ -8,11 +8,12 @@
 
     <div class="choice">
       <div class="container">
-        <div class="choice-form">
+        <form action="" method="GET" class="choice-form">
+          @csrf
           <x-public.components.reserve-menu />
 
           <x-public.components.calendar :weeks="$weeks" :day-of-week="$dayOfWeek" :times="$times" />
-        </div>
+        </form>
       </div>
     </div>
   </main>
