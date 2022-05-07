@@ -27,27 +27,11 @@
         <th>
           <span>{{$time}}〜</span>
         </th>
+        @foreach ($weeks as $week)
         <td>
-          <a href="{{ route('reservation') }}">◯</a>
+          <a href="{{ route('reservation', ['time' => $time, 'date' => $week.$dayOfWeek[$loop->index]]) }}">◯</a>
         </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
-        <td>
-          <a href="#">◯</a>
-        </td>
+        @endforeach
       </tr>
       @endforeach
     </tbody>

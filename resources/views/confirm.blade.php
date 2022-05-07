@@ -1,5 +1,5 @@
 <x-public.base>
-  @section('title', '予約システム')
+  @section('title', '予約システム - 内容確認')
   @section('content')
   <x-public.layouts.header />
 
@@ -19,11 +19,11 @@
             <dl class="confirm__definition-list">
               <div class="confirm__definition-box">
                 <dt>メニュー</dt>
-                <dd>オイル交換</dd>
+                <dd>{{$menu}}</dd>
               </div>
               <div class="confirm__definition-box">
                 <dt>日時</dt>
-                <dd>2022/04/01 (金)</dd>
+                <dd>{{$date}} {{$time}}〜</dd>
               </div>
             </dl>
           </div>
@@ -33,23 +33,20 @@
             <dl class="confirm__definition-list">
               <div class="confirm__definition-box">
                 <dt>お名前</dt>
-                <dd>田中たろう</dd>
+                <dd>{{$user['name']}}</dd>
               </div>
               <div class="confirm__definition-box">
                 <dt>メールアドレス</dt>
-                <dd>aaa@aaa.com</dd>
-              </div>
-              <div class="confirm__definition-box">
-                <dt>電話番号</dt>
-                <dd>09012345678</dd>
+                <dd>{{$user['email']}}</dd>
               </div>
             </dl>
           </div>
 
-          <form action="" method="post" class="form">
+          <form action="{{route('reservation.update')}}" method="post" class="form">
+            @csrf
             <div class="form__group">
               <h4 class="heading-quaternary">何かご要望がございましたらご記入ください</h4>
-              <textarea name="" id=""></textarea>
+              <textarea name="textarea" id=""></textarea>
             </div>
 
             <div class="flex margin-top-helper">
