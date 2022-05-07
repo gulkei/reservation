@@ -17,7 +17,7 @@
               <a href="{{ route('register') }}" class="button">新規登録して次へ</a>
             </div>
             <div class="button-wrap margin-top-helper">
-              <a href="#" class="button">新規登録せずに次へ</a>
+              <a href="{{ route('temporary') }}" class="button">新規登録せずに次へ</a>
             </div>
           </div>
         </div>
