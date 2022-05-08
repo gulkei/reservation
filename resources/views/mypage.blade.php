@@ -14,6 +14,10 @@
           </div>
 
           <div class="button-wrap">
+            <a href="" class="button">登録情報の編集</a>
+          </div>
+
+          <div class="button-wrap">
             <a href="" class="button">退会</a>
           </div>
         </div>
