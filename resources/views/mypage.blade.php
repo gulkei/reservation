@@ -4,9 +4,19 @@
   <x-public.layouts.header />
 
   <main class="main">
-    <div class="mypage">
+    <div class="register">
       <div class="container">
-        <p>マイページ</p>
+        <h3 class="heading-tertiary">マイページ</h3>
+
+        <div class="flex margin-top-helper">
+          <div class="button-wrap">
+            <a href="" class="button">予約履歴</a>
+          </div>
+
+          <div class="button-wrap">
+            <a href="" class="button">退会</a>
+          </div>
+        </div>
       </div>
     </div>
   </main>
