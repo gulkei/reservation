@@ -19,6 +19,10 @@ class ReservationController extends Controller
     session()->put('date', $date);
     session()->put('menu', $menu);
 
+    if (Auth::check()) {
+      return redirect()->intended('reservation/confirm');
+    }
+
     $route = route('reservation.login');
     return view('reservation', [
       'route' => $route,
