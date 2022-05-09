@@ -14,7 +14,7 @@
           </div>
 
           <div class="button-wrap">
-            <a href="" class="button">登録情報の編集</a>
+            <a href="{{route('profile')}}" class="button">登録情報の編集</a>
           </div>
 
           <div class="button-wrap">
