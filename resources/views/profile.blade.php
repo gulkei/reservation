@@ -23,35 +23,23 @@
           <div class="form__area">
             <h4 class="heading-quaternary">会員情報</h4>
             <div class="form__row">
-              <label for="" class="form__label">
-                <span class="form__select">必須</span>
-                <span class="form__title">お名前</span>
-              </label>
-              <input type="text" class="form__basic" name="name" value="{{ old('name', $user->name) }}" required>
+              <x-public.components.form.label option="必須" label="お名前" />
+              <x-public.components.form.input type="text" name="name" option="required" value="{{ old('name', $user->name) }}" />
             </div>
 
             <div class="form__row">
-              <label for="" class="form__label">
-                <span class="form__select">必須</span>
-                <span class="form__title">メールアドレス</span>
-              </label>
-              <input type="email" class="form__basic" name="email" value="{{ old('email', $user->email) }}" required>
+              <x-public.components.form.label option="必須" label="メールアドレス" />
+              <x-public.components.form.input type="email" name="email" option="required" value="{{ old('email', $user->email) }}" />
             </div>
 
             <div class="form__row">
-              <label for="" class="form__label">
-                <span class="form__select">任意</span>
-                <span class="form__title">パスワード</span>
-              </label>
-              <input type="password" class="form__basic" name="password">
+              <x-public.components.form.label option="任意" label="パスワード" />
+              <x-public.components.form.input type="password" name="password" />
             </div>
 
             <div class="form__row">
-              <label for="" class="form__label">
-                <span class="form__select">任意</span>
-                <span class="form__title">パスワード再確認</span>
-              </label>
-              <input type="password" class="form__basic" name="password_confirmation">
+              <x-public.components.form.label option="任意" label="パスワード再確認" />
+              <x-public.components.form.input type="password" name="password_confirmation" />
             </div>
           </div>
 
