@@ -17,7 +17,7 @@
         </div>
         @endif
 
-        <form action="{{route('register.create')}}" class="form" method="post">
+        <form action="{{route('register.create', ['keyword' => $keyword])}}" class="form" method="post">
           @csrf
           <div class="form__area">
             <h4 class="heading-quaternary">会員情報</h4>
@@ -42,11 +42,15 @@
             </div>
           </div>
 
+          @if (Str::contains($keyword, 'reservation'))
           <div class="form__area">
             <h4 class="heading-quaternary">何かご要望がございましたらご記入ください</h4>
 
             <textarea name="request" class="form__textarea"></textarea>
           </div>
+          @else
+          <input type="hidden" name="request" class="form__textarea" />
+          @endif
 
           <div class="flex margin-top-helper">
             <div class="button-wrap">
@@ -54,7 +58,11 @@
             </div>
 
             <div class="button-wrap">
+              @if (Str::contains($keyword, 'reservation'))
               <input type="submit" class="button" value="確認画面へ">
+              @else
+              <input type="submit" class="button" value="登録する">
+              @endif
             </div>
           </div>
 
