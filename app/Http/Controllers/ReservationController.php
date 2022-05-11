@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\LoginRequest;
 
 class ReservationController extends Controller
 {
@@ -55,5 +56,28 @@ class ReservationController extends Controller
   public function complete()
   {
     return view('complete');
+  }
+
+  /**
+   * 認証の試行を処理
+   *
+   * @param  \App\Http\Requests\User\LoginRequest  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function login(LoginRequest $request)
+  {
+    // HACK: MyPageControllerのloginとほぼかぶっている。
+    // 認証処理
+    $credentials = $request->validated();
+
+    if (Auth::attempt($credentials)) {
+      $request->session()->regenerate();
+
+      return redirect()->intended('reservation/confirm');
+    }
+
+    return back()->withErrors([
+      'all' => 'メールアドレスまたはパスワードが違っています。',
+    ])->onlyInput('email');
   }
 }
