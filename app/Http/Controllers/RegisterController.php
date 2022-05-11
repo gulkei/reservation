@@ -21,8 +21,6 @@ class RegisterController extends Controller
     // Headerの新規登録ボタンからの場合と、
     // 予約からの新規登録の場合
 
-    // FIX: validationエラー時にリダイレクトすると、
-    // 予約からの場合から新規登録ボタンからの場合に変更されている
     $prevUrl = url()->previous();
     $hasReservation = Str::contains($prevUrl, 'reservation');
     $hasRegister = Str::contains($prevUrl, 'register');
