@@ -24,7 +24,10 @@ class RegisterController extends Controller
     // FIX: validationエラー時にリダイレクトすると、
     // 予約からの場合から新規登録ボタンからの場合に変更されている
     $prevUrl = url()->previous();
-    if (Str::contains($prevUrl, 'reservation')) {
+    $hasReservation = Str::contains($prevUrl, 'reservation');
+    $hasRegister = Str::contains($prevUrl, 'register');
+
+    if ($hasReservation || $hasRegister) {
       $keyword = 'reservation';
     } else {
       $keyword = 'new';
@@ -75,10 +78,10 @@ class RegisterController extends Controller
         'menu' => $menu,
         'user' => $user,
       ]);
-    } else {
-      return back()->withErrors([
-        'all' => 'エラーが発生しました。',
-      ])->onlyInput('name', 'email');
     }
+
+    return back()->withErrors([
+      'all' => 'エラーが発生しました。',
+    ])->onlyInput('name', 'email');
   }
 }
