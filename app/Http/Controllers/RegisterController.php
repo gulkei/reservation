@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\User\StoreRequest;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
 
 class RegisterController extends Controller
 {
@@ -19,6 +20,9 @@ class RegisterController extends Controller
   {
     // Headerの新規登録ボタンからの場合と、
     // 予約からの新規登録の場合
+
+    // FIX: validationエラー時にリダイレクトすると、
+    // 予約からの場合から新規登録ボタンからの場合に変更されている
     $prevUrl = url()->previous();
     if (Str::contains($prevUrl, 'reservation')) {
       $keyword = 'reservation';
@@ -33,42 +37,20 @@ class RegisterController extends Controller
 
   /**
    * ユーザ新規登録
-   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Http\Requests\User\StoreRequest  $request
    * @return \Illuminate\Http\Response
    */
-  public function create(Request $request, $keyword)
+  public function create(StoreRequest $request, $keyword)
   {
 
     // validation
-    $request->validate([
-      'name' => [
-        'required',
-        'string',
-        'max:255',
-      ],
-      'email' => [
-        'required',
-        'email:rfc,dns',
-        'string',
-        'max:255',
-        'unique:users',
-      ],
-      'password' => [
-        'required',
-        'min:8',
-        'max:255',
-        'confirmed',
-      ],
-      'request' => [
-        'max:255',
-      ],
-    ]);
+    $credentials = $request->validated();
 
     // ユーザ登録
     User::create([
-      'name' => $request->input('name'),
-      'email' => $request->input('email'),
-      'password' => Hash::make($request->input('password')),
+      'name' => $credentials['name'],
+      'email' => $credentials['email'],
+      'password' => Hash::make($credentials['password']),
     ]);
 
     if ($keyword === 'new') {
