@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {
@@ -69,13 +71,32 @@ class RegisterController extends Controller
       'password' => Hash::make($request->input('password')),
     ]);
 
-    // 確認画面へリダイレクト
-    // TODO: お問い合わせ内容を次画面へ渡す
-
     if ($keyword === 'new') {
       return redirect()->route('home');
     }
 
-    return view('confirm');
+    // 認証もさせておく
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+      $request->session()->regenerate();
+
+      $time = session()->get('time');
+      $date = session()->get('date');
+      $menu = session()->get('menu');
+
+      $user = Auth::user();
+
+      return view('confirm', [
+        'time' => $time,
+        'date' => $date,
+        'menu' => $menu,
+        'user' => $user,
+      ]);
+    } else {
+      return back()->withErrors([
+        'all' => 'エラーが発生しました。',
+      ])->onlyInput('name', 'email');
+    }
   }
 }
