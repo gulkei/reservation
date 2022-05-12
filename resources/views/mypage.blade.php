@@ -10,7 +10,7 @@
 
         <div class="flex margin-top-helper">
           <div class="button-wrap">
-            <a href="" class="button">予約履歴</a>
+            <a href="{{route('history', ['user' => $user])}}" class="button">予約履歴</a>
           </div>
 
           <div class="button-wrap">

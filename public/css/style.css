@@ -521,6 +521,59 @@ th {
   height: auto;
 }
 
+.history__item {
+  border: 1px solid #000;
+  margin-top: 2.4rem;
+}
+.history__box {
+  text-align: center;
+  border-right: 1px solid #000;
+}
+.history__box:first-of-type {
+  flex: 0 0 14rem;
+}
+.history__box:nth-of-type(2) {
+  flex: 0 0 20rem;
+}
+.history__box:nth-of-type(3) {
+  flex: 0 0 calc(100% - 34rem);
+}
+.history dl {
+  flex: 0 0 70%;
+}
+.history dt {
+  border-bottom: 1px solid #000;
+  padding: 0.8rem 0;
+}
+.history dd {
+  padding: 0.8rem 0;
+}
+.history__buttons {
+  flex: 0 0 30%;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+}
+.history__button {
+  flex: 0 0 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 0;
+}
+.history__button--green {
+  background-color: #3cb371;
+}
+.history__button--red {
+  background-color: #ff6347;
+}
+.history .button-wrap {
+  padding-top: 4rem;
+}
+.history .button {
+  margin: 0 auto;
+}
+
 .register .form {
   margin-top: 2.4rem;
 }

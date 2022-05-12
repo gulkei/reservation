@@ -50,6 +50,7 @@ class MyPageController extends Controller
    */
   public function login(LoginRequest $request)
   {
+    // HACK: ReservationControllerのloginとほぼかぶっている。
     // 認証処理
     $credentials = $request->validated();
 
