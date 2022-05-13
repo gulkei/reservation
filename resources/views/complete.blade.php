@@ -7,6 +7,7 @@
     <div class="complete">
       <div class="container">
         <p class="complete__text">完了しました。</p>
+        <p class="complete__text">予約番号 {{ session('reservationId') }}</p>
 
         <div class="button-wrap">
           <a href="{{route('home')}}" class="button">TOPへ戻る</a>
