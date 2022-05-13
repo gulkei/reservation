@@ -42,11 +42,12 @@
             </dl>
           </div>
 
-          <form action="{{route('reservation.update')}}" method="post" class="form">
+          <form action="{{route('reservation.store')}}" method="post" class="form">
             @csrf
+
             <div class="form__group">
               <h4 class="heading-quaternary">何かご要望がございましたらご記入ください</h4>
-              <textarea name="textarea" id=""></textarea>
+              <textarea name="request" id=""></textarea>
             </div>
 
             <div class="flex margin-top-helper">

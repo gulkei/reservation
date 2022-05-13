@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
+use App\Models\ReservationRecord;
+use App\Http\Requests\User\LoginRequest;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\User\LoginRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ReservationController extends Controller
 {
@@ -47,10 +52,50 @@ class ReservationController extends Controller
     ]);
   }
 
-  public function update(Request $request)
+  public function store(Request $request)
   {
-    // TODO: validationして保存処理
-    return redirect()->intended('reservation/complete');
+    $request->validate([
+      'request' => 'max:1000',
+    ]);
+
+    $time = session()->get('time');
+    $date = session()->get('date');
+    $menu = session()->get('menu');
+
+    $user = Auth::user();
+
+    DB::beginTransaction();
+
+    try {
+      $reservation = Reservation::create([
+        'users_id' => $user['id'],
+        'name' => $user['name'],
+        'email' => $user['email'],
+        'reservation_date' => $date,
+        'reservation_time' => $time,
+        'request' => $request['request'],
+      ]);
+
+      ReservationRecord::create([
+        'reservations_id' => $reservation['id'],
+        'item' => $menu,
+      ]);
+
+      DB::commit();
+    } catch (\Exception $e) {
+      // 作成失敗時
+      Log::error($e);
+      Log::error('予約の登録に失敗しました。');
+      DB::rollBack();
+
+      return redirect()->route('home')->withErrors([
+        'all' => '予約に失敗しました。もう一度予約してください。',
+      ]);
+    }
+
+    return redirect()->intended('reservation/complete')->with([
+      'reservationId' => $reservation['id'],
+    ]);
   }
 
   public function complete()

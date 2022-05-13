@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reservation_records', function (Blueprint $table) {
             $table->foreignId('reservations_id')->constrained('reservations');
             $table->string('item');
+            $table->timestamps();
         });
     }
 
