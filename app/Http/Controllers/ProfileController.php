@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\User\UpdateRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -28,6 +29,9 @@ class ProfileController extends Controller
   public function update(UpdateRequest $request, User $user)
   {
 
+    $user->name = $request['name'];
+    $user->email = $request['email'];
+
     // NOTE: passwordは任意のため、nullの場合とそうでない場合がある。
     // nullableでnull許容しているが、
     // null,空文字の場合は値をセットしたくないため、
@@ -36,10 +40,16 @@ class ProfileController extends Controller
       $user->password = Hash::make($request['password']);
     }
 
-    $user->name = $request['name'];
-    $user->email = $request['email'];
+    try {
+      $user->save();
+    } catch (\Exception $e) {
+      Log::error($e);
+      Log::error('プロフィールの更新に失敗しました。');
 
-    $user->save();
+      return back()->withErrors([
+        'all' => 'エラーが発生しました。もう一度やり直してください',
+      ])->onlyInput('name', 'email');
+    }
 
     return redirect()->intended('mypage');
   }
