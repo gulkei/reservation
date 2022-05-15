@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -44,15 +45,22 @@ class RegisterController extends Controller
   public function create(StoreRequest $request, $keyword)
   {
 
-    // validation
     $credentials = $request->validated();
+    // ユーザ登録用にパスワードハッシュ化
+    $credentials['password'] = Hash::make($credentials['password']);
 
-    // ユーザ登録
-    User::create([
-      'name' => $credentials['name'],
-      'email' => $credentials['email'],
-      'password' => Hash::make($credentials['password']),
-    ]);
+    try {
+      // ユーザ登録
+      User::create($credentials);
+    } catch (\Exception $e) {
+      Log::error($e);
+      Log::error('ユーザの新規作成に失敗しました。');
+
+      return redirect()->route('home')->withErrors([
+        'all' => '新規作成に失敗しました。もう一度新規作成してください。',
+      ]);
+    }
+
 
     if ($keyword === 'new') {
       return redirect()->route('home');
