@@ -11,10 +11,7 @@ class MyPageController extends Controller
   public function index()
   {
 
-    $user = Auth::user();
-    return view('mypage', [
-      'user' => $user,
-    ]);
+    return view('mypage');
   }
 
   public function display()

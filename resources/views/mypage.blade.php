@@ -10,11 +10,15 @@
 
         <div class="flex margin-top-helper">
           <div class="button-wrap">
+            <a href="{{route('home')}}" class="button">予約</a>
+          </div>
+
+          <div class="button-wrap">
             <a href="{{route('history')}}" class="button">予約履歴</a>
           </div>
 
           <div class="button-wrap">
-            <a href="{{route('profile', ['user' => $user])}}" class="button">登録情報の編集</a>
+            <a href="{{route('profile')}}" class="button">登録情報の編集</a>
           </div>
 
           <div class="button-wrap">

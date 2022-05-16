@@ -17,7 +17,7 @@
         </div>
         @endif
 
-        <form action="{{route('profile.update', ['user' => $user])}}" class="form" method="POST">
+        <form action="{{route('profile.update')}}" class="form" method="POST">
           @csrf
           @method('PUT')
           <div class="form__area">

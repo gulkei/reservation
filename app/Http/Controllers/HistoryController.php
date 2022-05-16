@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class HistoryController extends Controller
 {
 
-  protected Reservation $reservation;
-
-  public function __construct(Reservation $reservation)
-  {
-    $this->reservation = $reservation;
-  }
-
   public function index(Reservation $reservation)
   {
     // user取得
