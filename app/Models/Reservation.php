@@ -22,4 +22,23 @@ class Reservation extends Model
         'reservation_time',
         'request',
     ];
+
+    /**
+     * 予約レコード取得
+     */
+    public function records()
+    {
+        return $this->hasMany(ReservationRecord::class, 'reservations_id');
+    }
+
+    /**
+     * 予約取得
+     */
+    public function getReservation($user_id)
+    {
+        return $this
+            ->where('users_id', $user_id)
+            ->orderBy('id', 'desc')
+            ->get();
+    }
 }

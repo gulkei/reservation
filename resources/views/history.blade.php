@@ -6,22 +6,28 @@
   <main class="main">
     <div class="history">
       <div class="container">
+        @if ($reservations)
         <ul class="history__list">
+          @foreach ($reservations as $reservation)
           <li class="flex history__item">
             <dl class="flex">
               <div class="history__box">
                 <dt>予約番号</dt>
-                <dd>5</dd>
+                <dd>{{ $reservation->id }}</dd>
               </div>
 
               <div class="history__box">
                 <dt>予約日時</dt>
-                <dd>2022年5月10日(火)<br>11:00</dd>
+                <dd>{{ $reservation->reservation_date }}<br>{{ $reservation->reservation_time }}</dd>
               </div>
 
               <div class="history__box">
                 <dt>予約項目</dt>
-                <dd>オイル交換</dd>
+                <dd>
+                  @foreach ($reservation->records as $record)
+                  {{ $record->item }}
+                  @endforeach
+                </dd>
               </div>
             </dl>
 
@@ -30,56 +36,12 @@
               <a href="#" class="history__button history__button--red">キャンセル</a>
             </div>
           </li>
-
-          <li class="flex history__item">
-            <dl class="flex">
-              <div class="history__box">
-                <dt>予約番号</dt>
-                <dd>4</dd>
-              </div>
-
-              <div class="history__box">
-                <dt>予約日時</dt>
-                <dd>2022年5月10日(火)<br>11:00</dd>
-              </div>
-
-              <div class="history__box">
-                <dt>予約項目</dt>
-                <dd>オイル交換</dd>
-              </div>
-            </dl>
-
-            <div class="flex history__buttons">
-              <a href="#" class="history__button history__button--green">変更</a>
-              <a href="#" class="history__button history__button--red">キャンセル</a>
-            </div>
-          </li>
-
-          <li class="flex history__item">
-            <dl class="flex">
-              <div class="history__box">
-                <dt>予約番号</dt>
-                <dd>3</dd>
-              </div>
-
-              <div class="history__box">
-                <dt>予約日時</dt>
-                <dd>2022年5月10日(火)<br>11:00</dd>
-              </div>
-
-              <div class="history__box">
-                <dt>予約項目</dt>
-                <dd>オイル交換</dd>
-              </div>
-            </dl>
-
-            <div class="flex history__buttons">
-              <a href="#" class="history__button history__button--green">変更</a>
-              <a href="#" class="history__button history__button--red">キャンセル</a>
-            </div>
-          </li>
+          @endforeach
         </ul>
 
+        @else
+        <p>まだ予約されていません。</p>
+        @endif
         <div class="button-wrap">
           <a href="{{route('mypage')}}" class="button">マイページへ戻る</a>
         </div>
