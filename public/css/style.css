@@ -615,6 +615,10 @@ th {
   color: #ff0000;
 }
 
+.common-area .flex {
+  gap: 2.4rem;
+}
+
 .container {
   width: 100%;
   max-width: 990px;
