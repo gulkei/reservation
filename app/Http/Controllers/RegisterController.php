@@ -61,16 +61,15 @@ class RegisterController extends Controller
       ]);
     }
 
-
-    if ($keyword === 'new') {
-      return redirect()->route('home');
-    }
-
     // 認証もさせておく
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
+
+      if ($keyword === 'new') {
+        return redirect()->route('home');
+      }
 
       $time = session()->get('time');
       $date = session()->get('date');
