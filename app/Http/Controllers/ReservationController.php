@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Models\ReservationRecord;
 use App\Http\Requests\User\LoginRequest;
+use App\Mail\ReservationCompleted;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -72,6 +74,7 @@ class ReservationController extends Controller
     DB::beginTransaction();
 
     try {
+
       $reservation = Reservation::create([
         'users_id' => $user['id'],
         'name' => $user['name'],
@@ -98,6 +101,8 @@ class ReservationController extends Controller
         'all' => '予約に失敗しました。もう一度予約してください。',
       ]);
     }
+
+    Mail::to($user['email'])->send(new ReservationCompleted($reservation));
 
     return redirect()->intended('reservation/complete')->with([
       'reservationId' => $reservation['id'],
