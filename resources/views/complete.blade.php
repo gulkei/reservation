@@ -6,7 +6,9 @@
   <main class="main">
     <div class="common-area">
       <div class="container">
-        <p class="complete__text">完了しました。</p>
+        <p class="complete__text">予約が完了しました。<br>
+        予約完了のメールを送信しましたのでご確認ください。<br>
+      予約完了のメールが届いていない場合は、お手数ですがご連絡ください。</p>
         <p class="complete__text">予約番号 {{ session('reservationId') }}</p>
 
         <div class="flex margin-top-helper">
