@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('users_id');
             $table->string('name');
             $table->string('email');
+            $table->string('reservation_year');
             $table->string('reservation_date');
             $table->string('reservation_time');
             $table->text('request')->nullable();

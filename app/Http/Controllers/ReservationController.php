@@ -17,10 +17,12 @@ class ReservationController extends Controller
   {
     // 予約情報(予約項目、日付)をsessionへ一時保存
     // TODO: 動的に(予約項目が増える)対応できるように書き換える
+    $year = $request->input('year');
     $time = $request->input('time');
     $date = $request->input('date');
     $menu = $request->input('menu');
 
+    session()->put('year', $year);
     session()->put('time', $time);
     session()->put('date', $date);
     session()->put('menu', $menu);
@@ -38,6 +40,7 @@ class ReservationController extends Controller
   public function confirm()
   {
     // TODO: 動的に(予約項目が増える)対応できるように書き換える
+    $year = session()->get('year');
     $time = session()->get('time');
     $date = session()->get('date');
     $menu = session()->get('menu');
@@ -45,6 +48,7 @@ class ReservationController extends Controller
     $user = Auth::user();
 
     return view('confirm', [
+      'year' => $year,
       'time' => $time,
       'date' => $date,
       'menu' => $menu,
@@ -58,6 +62,7 @@ class ReservationController extends Controller
       'request' => 'max:1000',
     ]);
 
+    $year = session()->get('year');
     $time = session()->get('time');
     $date = session()->get('date');
     $menu = session()->get('menu');
@@ -71,6 +76,7 @@ class ReservationController extends Controller
         'users_id' => $user['id'],
         'name' => $user['name'],
         'email' => $user['email'],
+        'reservation_year' => $year,
         'reservation_date' => $date,
         'reservation_time' => $time,
         'request' => $request['request'],

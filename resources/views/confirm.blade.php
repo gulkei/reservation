@@ -19,11 +19,11 @@
             <dl class="confirm__definition-list">
               <div class="confirm__definition-box">
                 <dt>メニュー</dt>
-                <dd>{{$menu}}</dd>
+                <dd>{{ $menu }}</dd>
               </div>
               <div class="confirm__definition-box">
                 <dt>日時</dt>
-                <dd>{{$date}} {{$time}}〜</dd>
+                <dd>{{ $year }} {{ $date }} {{ $time }}〜</dd>
               </div>
             </dl>
           </div>
@@ -33,16 +33,16 @@
             <dl class="confirm__definition-list">
               <div class="confirm__definition-box">
                 <dt>お名前</dt>
-                <dd>{{$user['name']}}</dd>
+                <dd>{{ $user['name'] }}</dd>
               </div>
               <div class="confirm__definition-box">
                 <dt>メールアドレス</dt>
-                <dd>{{$user['email']}}</dd>
+                <dd>{{ $user['email'] }}</dd>
               </div>
             </dl>
           </div>
 
-          <form action="{{route('reservation.store')}}" method="post" class="form">
+          <form action="{{ route('reservation.store') }}" method="post" class="form">
             @csrf
 
             <div class="form__group">
@@ -52,7 +52,7 @@
 
             <div class="flex margin-top-helper">
               <div class="button-wrap">
-                <a href="{{url()->previous()}}" class="button">前の画面に戻る</a>
+                <a href="{{ url()->previous() }}" class="button">前の画面に戻る</a>
               </div>
 
               <div class="button-wrap">

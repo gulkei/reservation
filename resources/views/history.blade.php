@@ -18,7 +18,7 @@
 
               <div class="history__box">
                 <dt>予約日時</dt>
-                <dd>{{ $reservation->reservation_date }}<br>{{ $reservation->reservation_time }}</dd>
+                <dd>{{ $reservation->reservation_year }}{{ $reservation->reservation_date }}<br>{{ $reservation->reservation_time }}</dd>
               </div>
 
               <div class="history__box">
@@ -43,7 +43,7 @@
         <p>まだ予約されていません。</p>
         @endif
         <div class="button-wrap">
-          <a href="{{route('mypage')}}" class="button">マイページへ戻る</a>
+          <a href="{{ route('mypage') }}" class="button">マイページへ戻る</a>
         </div>
       </div>
     </div>
