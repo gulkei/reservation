@@ -1,5 +1,8 @@
 <section class="section-tertiary">
   <h3 class="heading-tertiary">予約日時を選択</h3>
+
+  <p>{{ $year }}</p>
+
   <table class="table">
     <thead>
       <tr>
@@ -7,13 +10,13 @@
         @foreach ($weeks as $week)
         <th>
           <div class="table__box">
-            <span>{{$week}}</span>
+            <span>{{ $week }}</span>
             @if (Str::contains($dayOfWeek[$loop->index], '土'))
-            <span class="table__week--blue">{{$dayOfWeek[$loop->index]}}</span>
+            <span class="table__week--blue">{{ $dayOfWeek[$loop->index] }}</span>
             @elseif (Str::contains($dayOfWeek[$loop->index], '日'))
-            <span class="table__week--red">{{$dayOfWeek[$loop->index]}}</span>
+            <span class="table__week--red">{{ $dayOfWeek[$loop->index] }}</span>
             @else
-            <span>{{$dayOfWeek[$loop->index]}}</span>
+            <span>{{ $dayOfWeek[$loop->index] }}</span>
             @endif
           </div>
         </th>
@@ -25,11 +28,11 @@
       @foreach ($times as $time)
       <tr>
         <th>
-          <span>{{$time}}〜</span>
+          <span>{{ $time }}〜</span>
         </th>
         @foreach ($weeks as $week)
         <td>
-          <a href="{{ route('reservation', ['time' => $time, 'date' => $week.$dayOfWeek[$loop->index]]) }}">◯</a>
+          <a href="{{ route('reservation', ['year' => $year, 'time' => $time, 'date' => $week.$dayOfWeek[$loop->index]]) }}">◯</a>
         </td>
         @endforeach
       </tr>

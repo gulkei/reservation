@@ -32,6 +32,7 @@ class TemporaryUserController extends Controller
       ],
     ]);
 
+    $year = session()->get('year');
     $time = session()->get('time');
     $date = session()->get('date');
     $menu = session()->get('menu');
@@ -42,6 +43,7 @@ class TemporaryUserController extends Controller
     ];
 
     return view('confirm', [
+      'year' => $year,
       'time' => $time,
       'date' => $date,
       'menu' => $menu,

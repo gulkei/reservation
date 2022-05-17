@@ -13,6 +13,8 @@ class HomeController extends Controller
     $isoFormatDayMonth = 'MM/DD';
     $isoFormatDayOfWeek = '(ddd)';
 
+    // 年取得
+    $year = $this->getYear() . '年';
     // 週間日付取得
     $weeks = $this->getWeek($isoFormatDayMonth);
     // 週間曜日取得
@@ -31,6 +33,7 @@ class HomeController extends Controller
     ];
 
     return view('home', [
+      'year' => $year,
       'weeks' => $weeks,
       'dayOfWeek' => $dayOfWeek,
       'times' => $times
@@ -70,5 +73,18 @@ class HomeController extends Controller
     }
 
     return $weeks;
+  }
+
+  /**
+   * 年を取得
+   *
+   * @return integer
+   *
+   */
+  public function getYear()
+  {
+    $Carbon = new Carbon();
+
+    return $Carbon->year;
   }
 }

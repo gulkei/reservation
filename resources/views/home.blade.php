@@ -15,13 +15,14 @@
       </ul>
     </div>
     @endif
+
     <div class="choice">
       <div class="container">
         <form action="" method="GET" class="choice-form">
           @csrf
           <x-public.components.reserve-menu />
 
-          <x-public.components.calendar :weeks="$weeks" :day-of-week="$dayOfWeek" :times="$times" />
+          <x-public.components.calendar :year="$year" :weeks="$weeks" :day-of-week="$dayOfWeek" :times="$times" />
         </form>
       </div>
     </div>

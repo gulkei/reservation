@@ -18,6 +18,7 @@ class Reservation extends Model
         'users_id',
         'name',
         'email',
+        'reservation_year',
         'reservation_date',
         'reservation_time',
         'request',
