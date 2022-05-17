@@ -6,7 +6,7 @@
   <main class="main">
     <div class="history">
       <div class="container">
-        @if ($reservations)
+        @if (count($reservations))
         <ul class="history__list">
           @foreach ($reservations as $reservation)
           <li class="flex history__item">
