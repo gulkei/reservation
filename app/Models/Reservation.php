@@ -35,11 +35,11 @@ class Reservation extends Model
     /**
      * 予約取得
      */
-    public function getReservation($user_id)
+    public function getReservationPaginate($user_id)
     {
         return $this
             ->where('users_id', $user_id)
             ->orderBy('id', 'desc')
-            ->get();
+            ->paginate(5);
     }
 }
