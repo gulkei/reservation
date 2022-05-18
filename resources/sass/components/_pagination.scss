@@ -1,0 +1,39 @@
+.pagination {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  padding-top: 2.4rem;
+
+  &__arrow {
+    position: relative;
+
+    &::before,
+    &::after {
+      position: absolute;
+      display: inline-block;
+      content: "";
+      top: 50%;
+    }
+
+    &--previous::before {
+      width: 1rem;
+      height: 1rem;
+      border-top: 1px solid #000;
+      border-left: 1px solid #000;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+    &--next::after {
+      width: 1rem;
+      height: 1rem;
+      border-top: 1px solid #000;
+      border-right: 1px solid #000;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+  }
+
+  &__num {}
+}

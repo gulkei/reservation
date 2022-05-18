@@ -15,10 +15,10 @@ class HistoryController extends Controller
     $user = Auth::user();
 
     // 予約取得
-    $reservations = $reservation->getReservation($user->id);
+    $paginator = $reservation->getReservationPaginate($user->id);
 
     return view('history', [
-      'reservations' => $reservations,
+      'paginator' => $paginator,
     ]);
   }
 }

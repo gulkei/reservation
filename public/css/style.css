@@ -574,6 +574,36 @@ th {
   margin: 0 auto;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  padding-top: 2.4rem;
+}
+.pagination__arrow {
+  position: relative;
+}
+.pagination__arrow::before, .pagination__arrow::after {
+  position: absolute;
+  display: inline-block;
+  content: "";
+  top: 50%;
+}
+.pagination__arrow--previous::before {
+  width: 1rem;
+  height: 1rem;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  transform: translateY(-50%) rotate(-45deg);
+}
+.pagination__arrow--next::after {
+  width: 1rem;
+  height: 1rem;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+  transform: translateY(-50%) rotate(45deg);
+}
 .register .form {
   margin-top: 2.4rem;
 }
