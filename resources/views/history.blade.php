@@ -8,8 +8,6 @@
       <div class="container">
         @if (count($paginator))
         <ul class="history__list">
-          {{-- {{ dd($paginator->nextPageUrl()) }} --}}
-          {{-- <a href="{{ $paginator->nextPageUrl() }}">next</a> --}}
           @foreach ($paginator as $reservation)
           <li class="flex history__item">
             <dl class="flex">
@@ -41,15 +39,7 @@
           @endforeach
         </ul>
 
-        <div class="pagination">
-          <a href="" class="pagination__arrow pagination__arrow--previous"></a>
-          <a href="" class="pagination__num">1</a>
-          <a href="" class="pagination__num">2</a>
-          <a href="" class="pagination__num">3</a>
-          <a href="" class="pagination__num">4</a>
-          <a href="" class="pagination__num">5</a>
-          <a href="" class="pagination__arrow pagination__arrow--next"></a>
-        </div>
+        {{ $paginator->links('components.public.components.pagination') }}
 
         @else
         <p>まだ予約されていません。</p>
