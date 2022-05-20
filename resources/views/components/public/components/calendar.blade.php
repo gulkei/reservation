@@ -1,22 +1,22 @@
 <section class="section-tertiary">
   <h3 class="heading-tertiary">予約日時を選択</h3>
 
-  <p>{{ $year }}</p>
+  <p>{{ $calendar['year'] }}</p>
 
   <table class="table">
     <thead>
       <tr>
         <th></th>
-        @foreach ($weeks as $week)
+        @foreach ($calendar['weeks'] as $week)
         <th>
           <div class="table__box">
-            <span>{{ $week }}</span>
-            @if (Str::contains($dayOfWeek[$loop->index], '土'))
-            <span class="table__week--blue">{{ $dayOfWeek[$loop->index] }}</span>
-            @elseif (Str::contains($dayOfWeek[$loop->index], '日'))
-            <span class="table__week--red">{{ $dayOfWeek[$loop->index] }}</span>
+            <span>{{ $week['dayMonth'] }}</span>
+            @if (Str::contains($week['dayOfWeek'], '土'))
+            <span class="table__week--blue">{{ $week['dayOfWeek'] }}</span>
+            @elseif (Str::contains($week['dayOfWeek'], '日'))
+            <span class="table__week--red">{{ $week['dayOfWeek'] }}</span>
             @else
-            <span>{{ $dayOfWeek[$loop->index] }}</span>
+            <span>{{ $week['dayOfWeek'] }}</span>
             @endif
           </div>
         </th>
@@ -25,14 +25,19 @@
     </thead>
 
     <tbody>
-      @foreach ($times as $time)
+      @foreach ($calendar['times'] as $time)
       <tr>
         <th>
           <span>{{ $time }}〜</span>
         </th>
-        @foreach ($weeks as $week)
+        @foreach ($calendar['weeks'] as $week)
         <td>
-          <a href="{{ route('reservation', ['year' => $year, 'time' => $time, 'date' => $week.$dayOfWeek[$loop->index]]) }}">◯</a>
+          <a href="{{ route('reservation',
+          [
+          'year' => $calendar['year'],
+          'time' => $time,
+          'date' => $week['dayMonth'].$week['dayOfWeek'],
+          ] ) }}">◯</a>
         </td>
         @endforeach
       </tr>
