@@ -22,7 +22,7 @@
           @csrf
           <x-public.components.reserve-menu />
 
-          <x-public.components.calendar :year="$year" :weeks="$weeks" :day-of-week="$dayOfWeek" :times="$times" />
+          <x-public.components.calendar :calendar="$calendar" />
         </form>
       </div>
     </div>
