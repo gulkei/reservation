@@ -27,13 +27,13 @@ class HomeService
    * 例:
    * $weeksの中身
    * [
-   *  [ 'dayMonth' => '4/01', 'dayOfWeek' => '月'],
-   *  [ 'dayMonth' => '4/02', 'dayOfWeek' => '火'],
-   *  [ 'dayMonth' => '4/03', 'dayOfWeek' => '水'],
-   *  [ 'dayMonth' => '4/04', 'dayOfWeek' => '木'],
-   *  [ 'dayMonth' => '4/05', 'dayOfWeek' => '金'],
-   *  [ 'dayMonth' => '4/06', 'dayOfWeek' => '土'],
-   *  [ 'dayMonth' => '4/07', 'dayOfWeek' => '日'],
+   *  [ 'dayMonth' => '04/01', 'dayOfWeek' => '(Mon)'],
+   *  [ 'dayMonth' => '04/02', 'dayOfWeek' => '(Tue)'],
+   *  [ 'dayMonth' => '04/03', 'dayOfWeek' => '(Wed)'],
+   *  [ 'dayMonth' => '04/04', 'dayOfWeek' => '(Thu)'],
+   *  [ 'dayMonth' => '04/05', 'dayOfWeek' => '(Fri)'],
+   *  [ 'dayMonth' => '04/06', 'dayOfWeek' => '(Sat)'],
+   *  [ 'dayMonth' => '04/07', 'dayOfWeek' => '(Sun)'],
    * ]
    */
   public function getWeeks()
