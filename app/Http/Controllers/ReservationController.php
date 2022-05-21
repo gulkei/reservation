@@ -6,6 +6,7 @@ use App\Models\Reservation;
 use App\Models\ReservationRecord;
 use App\Http\Requests\User\LoginRequest;
 use App\Mail\ReservationCompleted;
+use App\Http\Requests\ReservationRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,11 +59,8 @@ class ReservationController extends Controller
     ]);
   }
 
-  public function store(Request $request)
+  public function store(ReservationRequest $request)
   {
-    $request->validate([
-      'request' => 'max:1000',
-    ]);
 
     $year = session()->get('year');
     $time = session()->get('time');

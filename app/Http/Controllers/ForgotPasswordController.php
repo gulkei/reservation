@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use App\Http\Requests\User\ForgotRequest;
 
 class ForgotPasswordController extends Controller
 {
@@ -16,12 +17,11 @@ class ForgotPasswordController extends Controller
   /**
    * パスワード再設定リンクを送信
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Http\Requests\User\ForgotRequest  $request
    * @return \Illuminate\Http\Response
    */
-  public function send(Request $request)
+  public function send(ForgotRequest $request)
   {
-    $request->validate(['email' => 'required|email']);
 
     $status = Password::sendResetLink(
       $request->only('email')

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\TemporaryRequest;
+
 class TemporaryUserController extends Controller
 {
   public function index()
@@ -11,26 +13,8 @@ class TemporaryUserController extends Controller
     return view('no-register');
   }
 
-  public function confirm(Request $request)
+  public function confirm(TemporaryRequest $request)
   {
-    // validation
-    $request->validate([
-      'name' => [
-        'required',
-        'string',
-        'max:255',
-      ],
-      'email' => [
-        'required',
-        'email:rfc,dns',
-        'string',
-        'max:255',
-        'unique:users',
-      ],
-      'request' => [
-        'max:255',
-      ],
-    ]);
 
     $year = session()->get('year');
     $time = session()->get('time');

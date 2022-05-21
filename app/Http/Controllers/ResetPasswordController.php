@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Http\Requests\User\ResetRequest;
 
 class ResetPasswordController extends Controller
 {
@@ -26,16 +27,11 @@ class ResetPasswordController extends Controller
   /**
    * パスワード再設定更新
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Http\Requests\User\ResetRequest  $request
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request)
+  public function update(ResetRequest $request)
   {
-    $request->validate([
-      'token' => 'required',
-      'email' => 'required|email',
-      'password' => 'required|min:8|max:255|confirmed',
-    ]);
 
     $status = Password::reset(
       $request->only('email', 'password', 'password_confirmation', 'token'),
