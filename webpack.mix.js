@@ -15,6 +15,9 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/style.scss', 'public/css', [
         //
     ])
+    .sass('resources/sass/admin/app.scss', 'public/css/admin', [
+        //
+    ])
     .browserSync({
         proxy: {
             target: "http://localhost",
