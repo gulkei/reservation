@@ -13,23 +13,22 @@
 <body class="text-center login">
 
   <main class="form-signin">
-    <form>
+    <form action="{{ route('admin.authenticate') }}" method="POST">
+      @csrf
       <h1 class="h3 mb-3 fw-normal">ログイン</h1>
 
+      @error('all')
+      <p class="form__error">{{$message}}</p>
+      @enderror
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="{{old('email')}}" required>
         <label for="floatingInput">メールアドレス</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
         <label for="floatingPassword">パスワード</label>
       </div>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me">次回からログインを省略
-        </label>
-      </div>
       <button class="w-100 btn btn-lg btn-primary" type="submit">ログイン</button>
       <p class="mt-5 mb-3 text-muted">©demo</p>
     </form>
