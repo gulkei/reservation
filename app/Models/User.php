@@ -41,4 +41,12 @@ class User extends Authenticatable
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
+
+    /**
+     * ユーザー取得
+     */
+    public function getUserPaginate()
+    {
+        return $this->paginate(20);
+    }
 }

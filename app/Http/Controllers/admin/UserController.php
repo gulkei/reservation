@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\User;
+
 class UserController extends Controller
 {
 
-  public function index()
+  public function index(User $user)
   {
-    return view('admin.user');
+    // user取得
+    $paginator = $user->getUserPaginate();
+
+    return view('admin.user', [
+      'paginator' => $paginator,
+    ]);
   }
 }
