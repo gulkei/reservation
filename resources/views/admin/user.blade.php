@@ -11,35 +11,35 @@
         <h1 class="h2">ユーザー</h1>
         <p>ユーザー</p>
 
+        @if (count($paginator))
         <table class="table">
           <thead>
             <tr>
               <th scope="col">ID</th>
               <th scope="col">名前</th>
               <th scope="col">メールアドレス</th>
-              <th scope="col">メモ</th>
+              <th scope="col">変更</th>
+              <th scope="col">削除</th>
             </tr>
           </thead>
           <tbody>
+            @foreach ($paginator as $user)
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <th scope="row">{{ $user->id }}</th>
+              <td>{{ $user->name }}</td>
+              <td>{{ $user->email }}</td>
+              <td><a href="" class="btn btn-primary">変更</a></td>
+              <td><a href="" class="btn btn-danger">削除</a></td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            @endforeach
           </tbody>
         </table>
+
+        {{ $paginator->links('components.admin.components.pagination') }}
+
+        @else
+        <p>まだ登録されていません。</p>
+        @endif
 
         <footer class="pt-5 d-flex justify-content-between">
           <span>Copyright ©demo</span>
