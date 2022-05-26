@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use App\Models\ReservationRecord;
+use App\Services\HistoryService;
 use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
 {
 
-  public function index(Reservation $reservation)
+  public function index(HistoryService $historyService, Reservation $reservation)
   {
-    // user取得
-    $user = Auth::user();
 
     // 予約取得
-    $paginator = $reservation->getReservationPaginate($user->id);
+    $paginator = $historyService->getReservationPaginate($reservation);
 
     return view('history', [
       'paginator' => $paginator,
