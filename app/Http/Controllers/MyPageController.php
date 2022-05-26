@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\LoginRequest;
+use App\Services\MyPageService;
 
 class MyPageController extends Controller
 {
   public function index()
   {
-
     return view('mypage');
   }
 
@@ -28,15 +28,9 @@ class MyPageController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function logout(Request $request)
+  public function logout(MyPageService $myPageService, Request $request)
   {
-    Auth::logout();
-
-    $request->session()->invalidate();
-
-    $request->session()->regenerateToken();
-
-    return redirect('/');
+    return $myPageService->logout($request);
   }
 
   /**
@@ -45,20 +39,8 @@ class MyPageController extends Controller
    * @param  \App\Http\Requests\User\LoginRequest  $request
    * @return \Illuminate\Http\Response
    */
-  public function login(LoginRequest $request)
+  public function login(MyPageService $myPageService, LoginRequest $request)
   {
-    // HACK: ReservationControllerのloginとほぼかぶっている。
-    // 認証処理
-    $credentials = $request->validated();
-
-    if (Auth::attempt($credentials)) {
-      $request->session()->regenerate();
-
-      return redirect()->intended('mypage');
-    }
-
-    return back()->withErrors([
-      'all' => 'メールアドレスまたはパスワードが違っています。',
-    ])->onlyInput('email');
+    return $myPageService->login($request);
   }
 }
