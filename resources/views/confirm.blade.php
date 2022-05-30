@@ -19,11 +19,11 @@
             <dl class="confirm__definition-list">
               <div class="confirm__definition-box">
                 <dt>メニュー</dt>
-                <dd>{{ $menu }}</dd>
+                <dd>{{ $reservationInfo['menu'] }}</dd>
               </div>
               <div class="confirm__definition-box">
                 <dt>日時</dt>
-                <dd>{{ $year }} {{ $date }} {{ $time }}〜</dd>
+                <dd>{{ $reservationInfo['year'] }} {{ $reservationInfo['date'] }} {{ $reservationInfo['time'] }}〜</dd>
               </div>
             </dl>
           </div>
@@ -33,11 +33,11 @@
             <dl class="confirm__definition-list">
               <div class="confirm__definition-box">
                 <dt>お名前</dt>
-                <dd>{{ $user['name'] }}</dd>
+                <dd>{{ $reservationInfo['user']->name }}</dd>
               </div>
               <div class="confirm__definition-box">
                 <dt>メールアドレス</dt>
-                <dd>{{ $user['email'] }}</dd>
+                <dd>{{ $reservationInfo['user']->email }}</dd>
               </div>
             </dl>
           </div>
