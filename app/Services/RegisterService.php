@@ -69,24 +69,39 @@ class RegisterService
         return redirect()->route('home');
       }
 
-      $year = session()->get('year');
-      $time = session()->get('time');
-      $date = session()->get('date');
-      $menu = session()->get('menu');
-
-      $user = Auth::user();
+      $reservationInfo = $this->getReservationInfo();
 
       return view('confirm', [
-        'year' => $year,
-        'time' => $time,
-        'date' => $date,
-        'menu' => $menu,
-        'user' => $user,
+        'reservationInfo' => $reservationInfo,
       ]);
     }
 
     return back()->withErrors([
       'all' => 'エラーが発生しました。',
     ])->onlyInput('name', 'email');
+  }
+
+  public function getSession()
+  {
+    return session()->get('reservationInfo');
+  }
+
+  /**
+   * @return \App\Models\User
+   */
+  public function getUser()
+  {
+    return Auth::user();
+  }
+
+  /**
+   * @return \Illuminate\Support\Collection
+   */
+  public function getReservationInfo()
+  {
+    $reservationInfo = $this->getSession();
+    $reservationInfo->put('user', $this->getUser());
+
+    return $reservationInfo;
   }
 }

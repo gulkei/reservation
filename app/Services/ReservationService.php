@@ -53,12 +53,65 @@ class ReservationService
   /**
    * @return \Illuminate\Support\Collection
    */
-  public function getReservationInfo()
+  public function getReservationInfo($request)
   {
     $reservationInfo = $this->getSession();
-    $reservationInfo->put('user', $this->getUser());
+
+    if (!empty($request->input('name')) && !empty($request->input('email'))) {
+      $user = collect([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+      ]);
+
+      $reservationInfo->put('user', $user);
+    } else {
+      $reservationInfo->put('user', $this->getUser());
+    }
 
     return $reservationInfo;
+  }
+
+  /**
+   * 会員登録しないで予約に対応するため
+   * それぞれでデータの中身が違う
+   */
+  public function setReservation($request, $reservationInfo)
+  {
+    if (!empty($request->input('name')) && !empty($request->input('email'))) {
+
+      $reservation = [
+        'users_id' => NULL,
+        'name' => $reservationInfo['user']['name'],
+        'email' => $reservationInfo['user']['email'],
+        'reservation_year' => $reservationInfo['year'],
+        'reservation_date' => $reservationInfo['date'],
+        'reservation_time' => $reservationInfo['time'],
+        'request' => $request['request'],
+      ];
+    } else {
+
+      $reservation = [
+        'users_id' => $reservationInfo['user']->id,
+        'name' => $reservationInfo['user']->name,
+        'email' => $reservationInfo['user']->email,
+        'reservation_year' => $reservationInfo['year'],
+        'reservation_date' => $reservationInfo['date'],
+        'reservation_time' => $reservationInfo['time'],
+        'request' => $request['request'],
+      ];
+    }
+
+    return $reservation;
+  }
+
+  public function sendMail($request, $reservation, $reservationInfo)
+  {
+    if (!empty($request->input('name')) && !empty($request->input('email'))) {
+      Mail::to($reservationInfo['user']['email'])->send(new ReservationCompleted($reservation));
+    } else {
+      Mail::to($reservationInfo['user']->email)->send(new ReservationCompleted($reservation));
+    }
+    return;
   }
 
   /**
@@ -67,21 +120,15 @@ class ReservationService
    */
   public function store($request)
   {
-    $reservationInfo = $this->getReservationInfo();
+    $reservationInfo = $this->getReservationInfo($request);
+
+    $reservation = $this->setReservation($request, $reservationInfo);
 
     DB::beginTransaction();
 
     try {
 
-      $reservation = Reservation::create([
-        'users_id' => $reservationInfo['user']->id,
-        'name' => $reservationInfo['user']->name,
-        'email' => $reservationInfo['user']->email,
-        'reservation_year' => $reservationInfo['year'],
-        'reservation_date' => $reservationInfo['date'],
-        'reservation_time' => $reservationInfo['time'],
-        'request' => $request['request'],
-      ]);
+      $reservation = Reservation::create($reservation);
 
       ReservationRecord::create([
         'reservations_id' => $reservation['id'],
@@ -100,7 +147,7 @@ class ReservationService
       ]);
     }
 
-    Mail::to($reservationInfo['user']->email)->send(new ReservationCompleted($reservation));
+    $this->sendMail($request, $reservation, $reservationInfo);
 
     return redirect()->intended('reservation/complete')->with([
       'reservationId' => $reservation['id'],
