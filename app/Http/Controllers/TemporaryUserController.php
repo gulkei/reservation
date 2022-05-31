@@ -16,22 +16,20 @@ class TemporaryUserController extends Controller
   public function confirm(TemporaryRequest $request)
   {
 
-    $year = session()->get('year');
-    $time = session()->get('time');
-    $date = session()->get('date');
-    $menu = session()->get('menu');
+    $reservationInfo = session()->get('reservationInfo');
 
-    $user = [
+    $user = collect([
       'name' => $request->input('name'),
       'email' => $request->input('email'),
-    ];
+    ]);
+
+    $reservationInfo->put('user', $user);
+
+    // ユーザー登録した場合とそうでない場合に画面を出し分けする用
+    session()->put('route', 'tmp');
 
     return view('confirm', [
-      'year' => $year,
-      'time' => $time,
-      'date' => $date,
-      'menu' => $menu,
-      'user' => $user,
+      'reservationInfo' => $reservationInfo,
     ]);
   }
 }

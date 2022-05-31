@@ -36,6 +36,24 @@ class ReservationController extends Controller
 
   public function store(ReservationRequest $request, ReservationService $reservationService)
   {
+
+    if (!empty($request->input('name')) && !empty($request->input('email'))) {
+      $request->validate([
+        'name' => [
+          'required',
+          'string',
+          'max:255',
+        ],
+        'email' => [
+          'required',
+          'email:rfc,dns',
+          'string',
+          'max:255',
+          'unique:users',
+        ],
+      ]);
+    }
+
     return $reservationService->store($request);
   }
 
