@@ -8,7 +8,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" data-url="reserve">
+        <a class="nav-link" href="{{ route('admin.reserve') }}" data-url="reserve">
           <span class="material-symbols-outlined nav-icon">calendar_month</span>
           <span class="ms-2">予約</span>
         </a>
