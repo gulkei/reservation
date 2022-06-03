@@ -1,0 +1,44 @@
+.calendar {
+  max-width: 1000px;
+  width: 100%;
+
+  th {
+    text-align: right;
+    padding: 4px;
+    border-bottom: 1px solid #bbb;
+  }
+
+  td {
+    vertical-align: top;
+    text-align: right;
+    border: 1px solid #ccc;
+    width: calc((100% / 7));
+    padding: 4px 8px;
+    height: 100px;
+  }
+
+  tbody tr td:first-of-type,
+  tbody tr td:last-of-type {
+    background-color: #f5f5f5;
+  }
+
+  .active {
+    background-color: #4169e1;
+    color: white;
+  }
+
+  &__user {
+    font-size: 14px;
+    padding: 0 4px;
+    background-color: #90ee90;
+
+    &:not(:first-of-type) {
+      margin-top: 4px;
+    }
+  }
+
+  &__day {
+    padding: 0 4px;
+  }
+
+}
