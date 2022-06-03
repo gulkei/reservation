@@ -20,6 +20,7 @@ class Reservation extends Model
         'email',
         'reservation_year',
         'reservation_date',
+        'reservation_week',
         'reservation_time',
         'request',
     ];

@@ -25,12 +25,14 @@ class ReservationService
     $year = $request->input('year');
     $time = $request->input('time');
     $date = $request->input('date');
+    $dayOfWeek = $request->input('dayOfWeek');
     $menu = $request->input('menu');
 
     $reservationInfo = collect([
       'year' => $year,
       'time' => $time,
       'date' => $date,
+      'dayOfWeek' => $dayOfWeek,
       'menu' => $menu,
     ]);
 
@@ -85,6 +87,7 @@ class ReservationService
         'email' => $reservationInfo['user']['email'],
         'reservation_year' => $reservationInfo['year'],
         'reservation_date' => $reservationInfo['date'],
+        'reservation_week' => $reservationInfo['dayOfWeek'],
         'reservation_time' => $reservationInfo['time'],
         'request' => $request['request'],
       ];
@@ -96,6 +99,7 @@ class ReservationService
         'email' => $reservationInfo['user']->email,
         'reservation_year' => $reservationInfo['year'],
         'reservation_date' => $reservationInfo['date'],
+        'reservation_week' => $reservationInfo['dayOfWeek'],
         'reservation_time' => $reservationInfo['time'],
         'request' => $request['request'],
       ];

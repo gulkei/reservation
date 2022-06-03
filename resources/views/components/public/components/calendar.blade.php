@@ -12,11 +12,11 @@
           <div class="table__box">
             <span>{{ $week['dayMonth'] }}</span>
             @if (Str::contains($week['dayOfWeek'], '土'))
-            <span class="table__week--blue">{{ $week['dayOfWeek'] }}</span>
+            <span class="table__week--blue">({{ $week['dayOfWeek'] }})</span>
             @elseif (Str::contains($week['dayOfWeek'], '日'))
-            <span class="table__week--red">{{ $week['dayOfWeek'] }}</span>
+            <span class="table__week--red">({{ $week['dayOfWeek'] }})</span>
             @else
-            <span>{{ $week['dayOfWeek'] }}</span>
+            <span>({{ $week['dayOfWeek'] }})</span>
             @endif
           </div>
         </th>
@@ -36,7 +36,8 @@
           [
           'year' => $calendar['year'],
           'time' => $time,
-          'date' => $week['dayMonth'].$week['dayOfWeek'],
+          'date' => $week['dayMonth'],
+          'dayOfWeek' => $week['dayOfWeek'],
           ] ) }}">◯</a>
         </td>
         @endforeach

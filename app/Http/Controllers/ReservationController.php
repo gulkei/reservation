@@ -25,9 +25,9 @@ class ReservationController extends Controller
     ]);
   }
 
-  public function confirm(ReservationService $reservationService)
+  public function confirm(Request $request, ReservationService $reservationService)
   {
-    $reservationInfo = $reservationService->getReservationInfo();
+    $reservationInfo = $reservationService->getReservationInfo($request);
 
     return view('confirm', [
       'reservationInfo' => $reservationInfo,
@@ -49,7 +49,6 @@ class ReservationController extends Controller
           'email:rfc,dns',
           'string',
           'max:255',
-          'unique:users',
         ],
       ]);
     }

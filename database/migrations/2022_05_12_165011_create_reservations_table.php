@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('reservation_year');
             $table->string('reservation_date');
+            $table->string('reservation_week');
             $table->string('reservation_time');
             $table->text('request')->nullable();
             $table->timestamps();
