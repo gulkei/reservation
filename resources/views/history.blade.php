@@ -18,7 +18,7 @@
 
               <div class="history__box">
                 <dt>予約日時</dt>
-                <dd>{{ $reservation->reservation_year }}{{ $reservation->reservation_date }}<br>{{ $reservation->reservation_time }}</dd>
+                <dd>{{ $reservation->reservation_year }}{{ $reservation->reservation_date }}({{ $reservation->reservation_week }})<br>{{ $reservation->reservation_time }}</dd>
               </div>
 
               <div class="history__box">

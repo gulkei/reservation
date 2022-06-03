@@ -41,7 +41,7 @@ class HomeService
     $Carbon = new Carbon();
 
     $isoFormatDayMonth = 'MM/DD';
-    $isoFormatDayOfWeek = '(ddd)';
+    $isoFormatDayOfWeek = 'ddd';
 
     // 週間日付の数。
     $numDay = 7;

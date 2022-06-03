@@ -23,7 +23,7 @@
               </div>
               <div class="confirm__definition-box">
                 <dt>日時</dt>
-                <dd>{{ $reservationInfo['year'] }} {{ $reservationInfo['date'] }} {{ $reservationInfo['time'] }}〜</dd>
+                <dd>{{ $reservationInfo['year'] }} {{ $reservationInfo['date'] }}({{ $reservationInfo['dayOfWeek'] }}) {{ $reservationInfo['time'] }}〜</dd>
               </div>
             </dl>
           </div>

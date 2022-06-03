@@ -6,7 +6,7 @@
 <div>
   予約番号: {{ $reservation->id }}
   <br>
-  予約日: {{ $reservation->reservation_year }}{{ $reservation->reservation_date }} {{ $reservation->reservation_time }}
+  予約日: {{ $reservation->reservation_year }}{{ $reservation->reservation_date }}({{ $reservation->reservation_week }}) {{ $reservation->reservation_time }}
   <br>
   予約内容: @foreach ($reservation->records as $record)
   {{ $record->item }}
