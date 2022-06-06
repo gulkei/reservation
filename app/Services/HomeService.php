@@ -27,30 +27,33 @@ class HomeService
    * 例:
    * $weeksの中身
    * [
-   *  [ 'dayMonth' => '04/01', 'dayOfWeek' => '(Mon)'],
-   *  [ 'dayMonth' => '04/02', 'dayOfWeek' => '(Tue)'],
-   *  [ 'dayMonth' => '04/03', 'dayOfWeek' => '(Wed)'],
-   *  [ 'dayMonth' => '04/04', 'dayOfWeek' => '(Thu)'],
-   *  [ 'dayMonth' => '04/05', 'dayOfWeek' => '(Fri)'],
-   *  [ 'dayMonth' => '04/06', 'dayOfWeek' => '(Sat)'],
-   *  [ 'dayMonth' => '04/07', 'dayOfWeek' => '(Sun)'],
+   *  [ 'dayMonth' => '4月1日', 'dayOfWeek' => '日'],
+   *  [ 'dayMonth' => '4月2日', 'dayOfWeek' => '月'],
+   *  [ 'dayMonth' => '4月3日', 'dayOfWeek' => '火'],
+   *  [ 'dayMonth' => '4月4日', 'dayOfWeek' => '水'],
+   *  [ 'dayMonth' => '4月5日', 'dayOfWeek' => '木'],
+   *  [ 'dayMonth' => '4月6日', 'dayOfWeek' => '金'],
+   *  [ 'dayMonth' => '4月7日', 'dayOfWeek' => '土'],
    * ]
    */
   public function getWeeks()
   {
     $Carbon = new Carbon();
 
-    $isoFormatDayMonth = 'MM/DD';
-    $isoFormatDayOfWeek = 'ddd';
+    $FormatDayMonth = 'n月j日';
+    $FormatDayOfWeek = 'D';
+
+    $dayOfWeeks = ['日', '月', '火', '水', '木', '金', '土'];
 
     // 週間日付の数。
     $numDay = 7;
     $weeks = collect();
 
     for ($i = 0; $i < $numDay; $i++) {
+      $dayOfWeekNum = $Carbon->copy()->addDay($i)->dayOfWeek;
       $weeks->push([
-        'dayMonth' => $Carbon->copy()->addDay($i)->isoFormat($isoFormatDayMonth),
-        'dayOfWeek' => $Carbon->copy()->addDay($i)->isoFormat($isoFormatDayOfWeek),
+        'dayMonth' => $Carbon->copy()->addDay($i)->Format($FormatDayMonth),
+        'dayOfWeek' => $dayOfWeeks[$dayOfWeekNum],
       ]);
     }
 
