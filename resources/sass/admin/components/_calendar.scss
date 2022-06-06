@@ -21,9 +21,12 @@
     height: 100px;
   }
 
-  tbody tr td:first-of-type,
+  tbody tr td:first-of-type {
+    background-color: #ffe5e5;
+  }
+
   tbody tr td:last-of-type {
-    background-color: #f5f5f5;
+    background-color: #e0e2fc;
   }
 
   .active {
