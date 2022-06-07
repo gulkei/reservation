@@ -12,8 +12,6 @@
         <p>予約状況の確認</p>
 
         {{-- カレンダーを作成する --}}
-        {{-- 月日のノーマルカレンダー --}}
-        {{-- 日付に予約何件という形で表示 --}}
         {{-- その日付をクリックすれば、予約詳細が確認できる --}}
 
         <div class="calendar">
@@ -34,8 +32,9 @@
 
             <tbody>
               @foreach ($calendar as $weeks)
+
                 <tr>
-                  @foreach ($weeks as $day)
+                  @foreach ($weeks['date'] as $day)
 
                     <td>
                       @if ($today == $day)
@@ -46,17 +45,25 @@
                       @else
                       <span class="calendar__day">{{ $day }}</span>
                       @endif
+
+                      @if(count($weeks['reserve'][$loop->index]))
+                      {{-- 2件以上は他何件という形で表示 --}}
+                        @foreach ($weeks['reserve'][$loop->index] as $reserve)
+                          @if ($loop->iteration >= 3)
+                            <div>他{{ $loop->remaining + 1 }}件 </div>
+                          @else
+                          <div class="calendar__user">
+                            <span>{{ $reserve->name }}</span>
+                            <span>{{ $reserve->reservation_time }}</span>
+                          </div>
+                          @endif
+                        @endforeach
+
+                      @endif
                     </td>
                   @endforeach
                 </tr>
               @endforeach
-              {{-- <td>
-                <span class="calendar__day">{{ $week[6] }}</span>
-                <div class="calendar__user">
-                  <span>田中太郎</span>
-                  <span>11:00</span>
-                </div>
-              </td> --}}
 
             </tbody>
           </table>

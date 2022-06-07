@@ -43,4 +43,14 @@ class Reservation extends Model
             ->orderBy('id', 'desc')
             ->paginate(5);
     }
+
+    /**
+     * 月別予約取得
+     */
+    public function getReservationMonth($month)
+    {
+        return $this
+            ->where('reservation_date', 'LIKE', "%$month%")
+            ->get();
+    }
 }
