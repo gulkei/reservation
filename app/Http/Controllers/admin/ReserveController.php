@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\admin;
 
 use App\Services\admin\ReserveService;
+use App\Models\Reservation;
 
 class ReserveController extends Controller
 {
 
-  public function index(ReserveService $reserveService)
+  public function index(ReserveService $reserveService, Reservation $reservation)
   {
-    $calendar = $reserveService->createCalendar();
+    $calendar = $reserveService->createCalendar($reservation);
 
-    $yearMonth = $reserveService->getYearMonth();
-    $today = $reserveService->getDayOfToday();
-
-    // 予約取得
+    $yearMonth = $reserveService->yearMonth();
+    $today = $reserveService->dayOfToday();
 
     return view('admin.reserve', [
       'calendar' => $calendar,

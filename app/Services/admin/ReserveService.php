@@ -9,9 +9,10 @@ class ReserveService
 
   /**
    * カレンダー生成
+   * @param  App\Models\Reservation $reservation
    * @return Illuminate\Support\Collection
    */
-  public function createCalendar()
+  public function createCalendar($reservation)
   {
 
     $dayOfWeeks = ['日', '月', '火', '水', '木', '金', '土'];
@@ -21,10 +22,9 @@ class ReserveService
     // 月の初め
     $carbon->startOfMonth();
 
+    $reserveAndWeeks = collect();
     $calendar = collect();
 
-    // weeksの最終日代入
-    $lastDay = 0;
     // loop回数(月の初めから最後までカバーできる 週7日 * 5 = 35)
     $loopNum = 5;
 
@@ -37,11 +37,13 @@ class ReserveService
         $weeks = $this->dayOfWeeks($carbon, $dayOfWeeks, $lastDay);
       }
 
-      $calendar->push($weeks);
+      $dateAndReserve = $this->dateAndReservation($weeks, $reservation);
 
-      $date = rtrim((string)$weeks[6], '日');
+      $calendar->push($dateAndReserve);
 
-      $lastDay = $date;
+      $days = explode('月', $weeks[6]);
+
+      $lastDay = rtrim($days[1], '日');
 
       $weeks = collect();
     }
@@ -49,15 +51,51 @@ class ReserveService
     return $calendar;
   }
 
+
+  /**
+   * ['date' => $dates, 'reserve' => $reserve]
+   * 上の形式の配列を作成
+   * @param Illuminate\Support\Collection $weeks
+   * @param App\Models\Reservation $reservation
+   * @return array
+   */
+  public function dateAndReservation($weeks, $reservation)
+  {
+    $reserve = collect();
+    $dates = collect();
+
+    // 予約取得
+    $reservations = $this->getReservationMonth($reservation);
+
+    foreach ($weeks as $week) {
+      $reserves = collect();
+
+      // 日付にあうものだけ予約を取り出す
+      foreach ($reservations as $key => $reservation) {
+        if ($week == $reservation['reservation_date']) {
+          $reserves->push($reservations->pull($key));
+        }
+      }
+
+      $reserve->push($reserves);
+      $dates->push($week);
+    }
+
+    return [
+      'date' => $dates,
+      'reserve' => $reserve,
+    ];
+  }
+
   /**
    * [
-   * 0 => '29',
-   * 1 => '30',
-   * 2 => '31',
-   * 3 => '1',
-   * 4 => '2',
-   * 5 => '3',
-   * 6 => '4',
+   * 0 => '5月29日',
+   * 1 => '5月30日',
+   * 2 => '5月31日',
+   * 3 => '6月1日',
+   * 4 => '6月2日',
+   * 5 => '6月3日',
+   * 6 => '6月4日',
    * ]
    *
    * 上の配列の形式を作成
@@ -69,29 +107,41 @@ class ReserveService
 
     $weeks = collect();
 
-    $format = 'j日';
+    for ($i = 0; $i < count($dayOfWeeks); $i++) {
+
+      // 日付取得
+      $date = $this->date($carbon, $i);
+
+      $weeks->push($date);
+    }
+
+    return $weeks;
+  }
+
+  /**
+   * @return string
+   */
+  public function date($carbon, $loopIndex)
+  {
     $formatMonthDay = 'n月j日';
 
     // 月の初めの曜日取得
     $dayOfWeekNum = $carbon->dayOfWeek;
 
-    for ($i = 0; $i < count($dayOfWeeks); $i++) {
-
-      // マイナス
-      if ($i < $dayOfWeekNum) {
-        $subDayNum = $dayOfWeekNum - $i;
-        $weeks->push($carbon->copy()->subDays($subDayNum)->format($format));
-      } elseif ($i == $dayOfWeekNum) {
-        // 曜日が同じ == 月初
-        $weeks->push($carbon->copy()->format($formatMonthDay));
-      } else {
-        // プラス
-        $addDayNum = $i - $dayOfWeekNum;
-        $weeks->push($carbon->copy()->addDays($addDayNum)->format($format));
-      }
+    // マイナス
+    if ($loopIndex < $dayOfWeekNum) {
+      $subDayNum = $dayOfWeekNum - $loopIndex;
+      $date = $carbon->copy()->subDays($subDayNum)->format($formatMonthDay);
+    } elseif ($loopIndex == $dayOfWeekNum) {
+      // 曜日が同じ == 月初
+      $date = $carbon->copy()->format($formatMonthDay);
+    } else {
+      // プラス
+      $addDayNum = $loopIndex - $dayOfWeekNum;
+      $date = $carbon->copy()->addDays($addDayNum)->format($formatMonthDay);
     }
 
-    return $weeks;
+    return $date;
   }
 
   /**
@@ -101,7 +151,7 @@ class ReserveService
   {
     $weeks = collect();
 
-    $format = 'j日';
+    $format = 'n月j日';
 
     for ($i = 0; $i < count($dayOfWeeks); $i++) {
       $addDayNum = $lastDay + $i;
@@ -114,20 +164,35 @@ class ReserveService
   /**
    * @return string
    */
-  public function getDayOfToday()
+  public function dayOfToday()
   {
     $carbon = new Carbon();
 
-    return $carbon->today()->format('j日');
+    return $carbon->today()->format('n月j日');
   }
 
   /**
    * @return string
    */
-  public function getYearMonth()
+  public function yearMonth()
   {
     $carbon = new Carbon();
 
     return $carbon->today()->format('Y年n月');
+  }
+
+
+  /**
+   * @param  App\Models\Reservation $reservation
+   * @return App\Models\Reservation $reservation
+   */
+  public function getReservationMonth($reservation)
+  {
+    $carbon = new Carbon();
+
+    $month = $carbon->format('n月');
+    $reservation = $reservation->getReservationMonth($month);
+
+    return $reservation;
   }
 }
