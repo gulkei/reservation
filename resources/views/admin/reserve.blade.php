@@ -37,11 +37,10 @@
                   @foreach ($weeks['date'] as $day)
 
                     <td>
-                      @if ($today == $day)
+                      @if (Str::contains($day, [$month['last'], $month['next']]))
+                      <span class="calendar__day inactive">{{ $day }}</span>
+                      @elseif ($today == $day)
                       <span class="calendar__day active">{{ $day }}</span>
-                      @php
-                        $today = false;
-                      @endphp
                       @else
                       <span class="calendar__day">{{ $day }}</span>
                       @endif

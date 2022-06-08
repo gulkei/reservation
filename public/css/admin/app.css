@@ -28,6 +28,9 @@
   background-color: #4169e1;
   color: white;
 }
+.calendar .inactive {
+  color: #ccc;
+}
 .calendar__user {
   font-size: 14px;
   padding: 0 4px;

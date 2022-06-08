@@ -15,10 +15,13 @@ class ReserveController extends Controller
     $yearMonth = $reserveService->yearMonth();
     $today = $reserveService->dayOfToday();
 
+    $month = $reserveService->lastThisNextMonth();
+
     return view('admin.reserve', [
       'calendar' => $calendar,
       'yearMonth' => $yearMonth,
       'today' => $today,
+      'month' => $month,
     ]);
   }
 }

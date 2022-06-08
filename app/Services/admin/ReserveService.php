@@ -172,6 +172,29 @@ class ReserveService
   }
 
   /**
+   * 先月、今月、来月取得
+   * @return Illuminate\Support\Collection
+   */
+  public function lastThisNextMonth()
+  {
+    $carbon = new Carbon();
+
+    $format = 'n月';
+
+    $thisMonth = $carbon->today()->format($format);
+    $lastMonth = $carbon->copy()->startOfMonth()->subDay()->format($format);
+    $nextMonth = $carbon->copy()->lastOfMonth()->addDay()->format($format);
+
+    $month = collect([
+      'this' => $thisMonth,
+      'last' => $lastMonth,
+      'next' => $nextMonth,
+    ]);
+
+    return $month;
+  }
+
+  /**
    * @return string
    */
   public function yearMonth()
