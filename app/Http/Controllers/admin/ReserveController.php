@@ -24,4 +24,10 @@ class ReserveController extends Controller
       'month' => $month,
     ]);
   }
+
+  public function detail()
+  {
+
+    return view('admin.reserve-detail');
+  }
 }
