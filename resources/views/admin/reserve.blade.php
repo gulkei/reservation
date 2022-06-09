@@ -37,16 +37,17 @@
                   @foreach ($weeks['date'] as $day)
 
                     <td>
-                      @if (Str::contains($day, [$month['last'], $month['next']]))
-                      <span class="calendar__day inactive">{{ $day }}</span>
-                      @elseif ($today == $day)
-                      <span class="calendar__day active">{{ $day }}</span>
-                      @else
-                      <span class="calendar__day">{{ $day }}</span>
-                      @endif
+                      @if (count($weeks['reserve'][$loop->index]))
+                      <a href="{{ route('admin.reserve-detail') }}" class="calendar__link">
+                        @if (Str::contains($day, [$month['last'], $month['next']]))
+                        <span class="calendar__day inactive">{{ $day }}</span>
+                        @elseif ($today == $day)
+                        <span class="calendar__day active">{{ $day }}</span>
+                        @else
+                        <span class="calendar__day">{{ $day }}</span>
+                        @endif
 
-                      @if(count($weeks['reserve'][$loop->index]))
-                      {{-- 2件以上は他何件という形で表示 --}}
+                        {{-- 2件以上は他何件という形で表示 --}}
                         @foreach ($weeks['reserve'][$loop->index] as $reserve)
                           @if ($loop->iteration >= 3)
                             <div>他{{ $loop->remaining + 1 }}件 </div>
@@ -57,7 +58,16 @@
                           </div>
                           @endif
                         @endforeach
+                      </a>
+                      @else
 
+                        @if (Str::contains($day, [$month['last'], $month['next']]))
+                        <span class="calendar__day inactive">{{ $day }}</span>
+                        @elseif ($today == $day)
+                        <span class="calendar__day active">{{ $day }}</span>
+                        @else
+                        <span class="calendar__day">{{ $day }}</span>
+                        @endif
                       @endif
                     </td>
                   @endforeach
